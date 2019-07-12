@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<form class="form-inline" method="POST">
+    {% csrf_token %}
+    <input class="form-control" type="text" placeholder="Movie Title" name="title">
+    <input class="form-control" type="number" placeholder="Movie Year" name="year">
+    <input class="form-control" type="text" placeholder="Movie Plot" name="plot">
+    <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">ADD</button>
+</form>
+{% endblock %}

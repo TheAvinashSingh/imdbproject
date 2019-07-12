@@ -1,0 +1,11 @@
+from django.db import models
+
+# Create your models here.
+
+class MovieList(models.Model):
+    title = models.CharField(max_length=50)
+    year = models.IntegerField()
+    plot = models.TextField()
+
+    def __str__(self):
+        return (self.title + ' | ' + str(self.year) + ' | ' + self.plot)

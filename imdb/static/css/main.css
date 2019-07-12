@@ -1,0 +1,55 @@
+.makegap {
+    margin-top: 5vw;
+}
+
+.addmovie {
+    border: 2px solid green;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+.addmovie:hover {
+    color: white;
+    background-color: darkgreen;
+    border: 2px solid darkgreen;
+}
+.title {
+    text-transform: uppercase;
+}
+.justify {
+    text-align: justify;
+}
+
+.editmovie {
+    border: 2px solid yellow;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: yellow;
+    cursor: pointer;
+}
+.editmovie:hover {
+    color: black;
+    background-color: rgb(177, 177, 0);
+    border: 2px solid rgb(177, 177, 0);
+    text-decoration: none;
+}
+.deletemovie {
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+}
+.deletemovie:hover {
+    color: white;
+    background-color: darkred;
+    border: 2px solid darkred;
+    text-decoration: none;
+}
