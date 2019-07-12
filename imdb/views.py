@@ -32,3 +32,17 @@ def delete_movie(request, movie_id):
     movie = MovieList.objects.get(pk= movie_id)
     movie.delete()
     return redirect('home')
+
+def edit_movie(request, movie_id):
+
+    if request.method == 'POST':
+        movie = MovieList.objects.get(pk= movie_id)
+        form = MovieListForm(request.POST or None, instance=movie)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        movie = MovieList.objects.get(pk= movie_id)
+        return render(request, 'edit_movie.html', {'movie': movie})
+

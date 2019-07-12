@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if movie %}
+        <form class="form-inline" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" value="{{movie.title}}" placeholder="{{movie.title}}" name="title">
+        <input class="form-control" type="number" value="{{movie.year}}" placeholder="{{movie.year}}" name="year">
+        <input class="form-control" type="text" value="{{movie.plot}}" placeholder="{{movie.plot}}" name="plot">
+        <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">SAVE</button>
+        </form>
+
+    {% endif %}
+
+{% endblock %}
