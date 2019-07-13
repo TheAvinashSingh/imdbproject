@@ -28,7 +28,9 @@
         <div class="row text-center">
             <div class="col-sm-2"></div>
             <div class="col-sm-1"><p><b>CAST:</b></p></div>
-            <div class="col-sm-6"><p class="justify">Rober Downey Jr, Chris Evans, Chris Hemsworth, Scarlet Johanson, Chris Pratt, Tom Holland, Benedict Cumberbatch, Brie Larson </p></div>
+            {% if all_actors %}
+            <div class="col-sm-6"><p class="justify">{% for actor in all_actors %}{{actor.name}}, {% endfor %}</p></div>
+            {% endif %}
         </div>
 
         <div class="row">

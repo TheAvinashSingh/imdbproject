@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row makegap">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">All Actors</div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2"><a class="btn btn-primary" href="{% url 'add_actor' %}">Add Actor</a></div>
+    </div>
+    <div class="makegap"></div>
+    {% if all_actors %}
+        {% for actor in all_actors %}
+            <div class="makegap"></div>
+            <div class="row text-center">
+                <div class="col-sm-12"><h2 class="title">{{actor.name}}</h2></div>
+            </div>
+
+            <div class="row text-center text-muted">
+                <div class="col-sm-12"><h6>Date of Birth: {{actor.birthdate}}</h6></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1"><p><b>Gender:</b></p></div>
+                <div class="col-sm-6"><p class="justify">{{actor.gender}}</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1"><p><b>Biography:</b></p></div>
+                <div class="col-sm-6"><p class="justify">{{actor.bio}}</p></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-7"></div>
+                <div class="col-sm-3"><a class="btn btn-warning" href="">Edit Actor</a> <a class="btn btn-danger" href="{% url 'delete_actor' actor.id %}">Delete Actor</a></div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
