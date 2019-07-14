@@ -37,12 +37,10 @@
             <div class="col-sm-8">
             <label for="actorselect">Select Movie Cast</label>
             <small id="actortip" class="form-text text-muted">You can select Multiple Cast by Holding Ctrl/Cmd</small>
-                <select multiple class="form-control" id="actorselect" area-describedby="actortip">
-                    <option>Will Smith</option>
-                    <option>Alexandra Daddario</option>
-                    <option>Tom Cruise</option>
-                    <option>Emma Stone</option>
-                    <option>Keanu Reaves</option>
+                <select multiple class="form-control" id="actorselect" area-describedby="actortip" name="actor">
+                    {% for actor in all_actors %}
+                    <option>{{actor.name}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

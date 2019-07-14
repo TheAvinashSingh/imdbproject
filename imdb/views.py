@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import MovieList, ActorList
+from .models import MovieList, ActorList, Roles
 from .forms import MovieListForm, ActorListForm
 
 # Create your views here.
 def home(request):
     all_items = MovieList.objects.all
     all_actors = ActorList.objects.all
-    return render(request, 'index.html', {'all_items' : all_items, 'all_actors': all_actors})
+    roles = Roles.objects.all
+    return render(request, 'index.html', {'all_items' : all_items, 'all_actors': all_actors, 'roles': roles})
 
 def add_movie(request):
     if request.method == 'POST':
@@ -14,10 +15,12 @@ def add_movie(request):
         if form.is_valid():
             form.save()
             all_items = MovieList.objects.all
-            return render(request, 'index.html', {'all_items': all_items})
-    
+            all_actors = ActorList.objects.all
+            return render(request, 'index.html', {'all_items': all_items, 'all_actors': all_actors})
+
     else:
-        return render(request, 'add_movie.html', {})
+        all_actors = ActorList.objects.all
+        return render(request, 'add_movie.html', { 'all_actors': all_actors })
 
 def delete_movie(request, movie_id):
     movie = MovieList.objects.get(pk= movie_id)
@@ -54,6 +57,6 @@ def add_actor(request):
             form.save()
             all_actors = ActorList.objects.all
             return render(request, 'actors.html', {'all_actors': all_actors})
-    
+
     else:
         return render(request, 'add_actor.html', {})
