@@ -29,7 +29,7 @@ def delete_movie(request, movie_id):
     return redirect('home')
 
 def edit_movie(request, movie_id):
-
+    form = MovieListForm()
     if request.method == 'POST':
         movie = MovieList.objects.get(pk= movie_id)
         form = MovieListForm(request.POST or None, instance=movie)
@@ -39,7 +39,7 @@ def edit_movie(request, movie_id):
             return redirect('home')
     else:
         movie = MovieList.objects.get(pk= movie_id)
-        return render(request, 'edit_movie.html', {'movie': movie})
+        return render(request, 'edit_movie.html', {'movie': movie, 'form': form})
 
 def actors(request):
         all_actors = ActorList.objects.all

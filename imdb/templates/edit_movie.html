@@ -36,16 +36,18 @@
 
             <div class="form-group form-row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-8">
+                <div class="col-sm-4">
                 <label for="actorselect">Select Movie Cast</label>
                 <small id="actortip" class="form-text text-muted">You can select Multiple Cast by Holding Ctrl/Cmd</small>
-                    <select multiple class="form-control" id="actorselect" area-describedby="actortip">
-                        <option>Will Smith</option>
-                        <option>Alexandra Daddario</option>
-                        <option>Tom Cruise</option>
-                        <option>Emma Stone</option>
-                        <option>Keanu Reaves</option>
-                    </select>
+                    <div>{{ form.actor|safe }}</div>
+                </div>
+                <div class="col-sm-4">
+                  <u><b>Actors Already Present</b></u>
+                  <ul>
+                  {% for artist in movie.roles_set.all %}
+                    <li>{{artist.actor.name}}</li>
+                  {% endfor %}
+                  </ul>
                 </div>
             </div>
             <div class="makegap"></div>
@@ -57,9 +59,6 @@
                 </div>
             </div>
         </form>
-        {% for artist in movie.roles_set.all %}
-          {{artist.actor.name}}
-        {% endfor %}
     </div>
     {% endif %}
 

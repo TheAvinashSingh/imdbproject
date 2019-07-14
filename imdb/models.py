@@ -11,7 +11,7 @@ class ActorList(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return (self.name + ' | ' + self.gender)
+        return (self.name)
 
 
 class MovieList(models.Model):
