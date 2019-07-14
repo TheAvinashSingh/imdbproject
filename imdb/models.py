@@ -19,6 +19,7 @@ class MovieList(models.Model):
     year = models.CharField(max_length=4)
     plot = models.TextField()
     actor = models.ManyToManyField(ActorList, related_name='Actor', through='Roles', verbose_name='ACTOR/ACTRESS')
+    poster = models.ImageField(upload_to='movie_poster', blank= True)
 
     class Meta:
         ordering = ('title',)

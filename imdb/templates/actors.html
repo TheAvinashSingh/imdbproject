@@ -13,7 +13,7 @@
         {% for actor in all_actors %}
             <div class="makegap"></div>
             <div class="row text-center">
-                <div class="col-sm-12"><h2 class="title">{{actor.name}}</h2></div>
+                <div class="col-sm-12"><h2 class="nametitle">{{actor.name}}</h2></div>
             </div>
 
             <div class="row text-center text-muted">
@@ -34,7 +34,7 @@
 
             <div class="row">
                 <div class="col-sm-7"></div>
-                <div class="col-sm-3"><a class="btn btn-warning" href="">Edit Actor</a> <a class="btn btn-danger" href="{% url 'delete_actor' actor.id %}">Delete Actor</a></div>
+                <div class="col-sm-3"><a class="btn btn-danger" href="{% url 'delete_actor' actor.id %}">Delete Actor</a></div>
             </div>
         {% endfor %}
     {% endif %}

@@ -1,9 +1,16 @@
 .makegap {
     margin-top: 3vw;
 }
-.title {
-    text-transform: uppercase;
+
+.nametitle {
+  text-transform: uppercase;
 }
 .justify {
     text-align: justify;
+}
+
+#id_actor, #actorselect {
+  width: 10vw;
+  border: 5px solid red;
+  min-width: 100px !important;
 }

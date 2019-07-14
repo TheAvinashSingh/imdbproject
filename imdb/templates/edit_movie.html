@@ -16,14 +16,14 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <label for="movietitle">Title of the Movie</label>
-                    <input class="form-control" type="text" placeholder="{{movie.title}}" name="title" id="movietitle" value={{movie.title}}>
+                    <input class="form-control" type="text" placeholder="{{movie.title}}" name="title" id="movietitle" value="{{movie.title}}">
                 </div>
             </div>
             <div class="form-group form-row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <label for="movieyear">Release Year</label>
-                    <input class="form-control" type="number" placeholder="{{movie.year}}" name="year" id="movieyear" min=1950 max=2019 value={{movie.year}}>
+                    <input class="form-control" type="number" placeholder="{{movie.year}}" name="year" id="movieyear" min=1950 max=2019 value="{{movie.year}}">
                 </div>
             </div>
             <div class="form-group form-row">
@@ -50,6 +50,8 @@
                   </ul>
                 </div>
             </div>
+            <div class="makegap"></div>
+            {{ form.poster }}
             <div class="makegap"></div>
             <div class="row">
                 <div class="col-sm-2"></div>

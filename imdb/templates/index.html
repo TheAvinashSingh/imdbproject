@@ -11,36 +11,44 @@
 {% if all_items %}
     {% for movie in all_items %}
         <div class="makegap"></div>
-        <div class="row text-center">
-            <div class="col-sm-12"><h2 class="title">{{movie.title}}</h2></div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-sm-12"><h5>Release Year: {{movie.year}}</h5></div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-1"><p><b>PLOT:</b></p></div>
-            <div class="col-sm-6"><p class="justify">{{movie.plot}}</p></div>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-1"><p><b>CAST:</b></p></div>
-
-            <div class="col-sm-6">
-              <p class="justify">
-                {% for actor in movie.actor.all %}
-                  {{ actor.name }},
-                {% endfor %}
-              </p>
-            </div>
-        </div>
-
         <div class="row">
-            <div class="col-sm-7"></div>
-            <div class="col-sm-3"><a class="btn btn-warning" href="{% url 'edit_movie' movie.id %}">Edit Movie</a> <a class="btn btn-danger" href="{% url 'delete_movie' movie.id %}">Delete Movie</a></div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-3">
+            {% if movie.poster %}
+              <img src="{{movie.poster.url}}" width="250"/>
+            {% endif %}
+          </div>
+          <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-12"><h2 class="nametitle">{{movie.title}}</h2></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12"><h5>Release Year: {{movie.year}}</h5></div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-sm-1"><p><b>PLOT:</b></p></div>
+                <div class="col-sm-6"><p class="justify">{{movie.plot}}</p></div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-sm-1"><p><b>CAST:</b></p></div>
+
+                <div class="col-sm-6">
+                  <p class="justify">
+                    {% for actor in movie.actor.all %}
+                      {{ actor.name }},
+                    {% endfor %}
+                  </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4"><a class="btn btn-warning" href="{% url 'edit_movie' movie.id %}">Edit Movie</a> </div>
+                <div class="col-sm-4"><a class="btn btn-danger" href="{% url 'delete_movie' movie.id %}">Delete Movie</a></div>
+            </div>
+          </div>
         </div>
     {% endfor %}
 {% endif %}

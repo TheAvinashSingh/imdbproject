@@ -4,7 +4,7 @@ from .models import MovieList, ActorList
 class MovieListForm(forms.ModelForm):
     class Meta:
         model = MovieList
-        fields = ["title", "year", "plot", "actor"]
+        fields = ["title", "year", "plot", "actor", "poster"]
 
 class ActorListForm(forms.ModelForm):
     class Meta:
