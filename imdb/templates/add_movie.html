@@ -8,7 +8,7 @@
             <h2>Add New Movie</h2>
         </div>
     </div>
-    <form class="form" method="POST" enctype="multipart/form-data">
+    <form name="MovieListForm" class="form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group form-row">
             <div class="col-sm-2"></div>
@@ -37,11 +37,7 @@
             <div class="col-sm-8">
             <label for="actorselect">Select Movie Cast</label>
             <small id="actortip" class="form-text text-muted">You can select Multiple Cast by Holding Ctrl/Cmd</small>
-                <select multiple class="form-control" id="actorselect" area-describedby="actortip" name="actor">
-                    {% for actor in all_actors %}
-                    <option>{{actor.name}}</option>
-                    {% endfor %}
-                </select>
+                <div>{{ form.actor|safe }}</div>
             </div>
         </div>
         <div class="row">

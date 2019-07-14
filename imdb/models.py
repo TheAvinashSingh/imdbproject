@@ -11,7 +11,7 @@ class ActorList(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return (self.name + ' | ' + self.gender + ' | ' + self.bio + ' | ' + str(self.birthdate))
+        return (self.name + ' | ' + self.gender)
 
 
 class MovieList(models.Model):
@@ -34,6 +34,7 @@ class Roles(models.Model):
     class Meta:
         verbose_name = 'Role'
         verbose_name_plural = 'Roles'
+        auto_created = True
 
     def __str__(self):
         return self.role_name

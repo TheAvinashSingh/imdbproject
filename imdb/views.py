@@ -4,12 +4,13 @@ from .forms import MovieListForm, ActorListForm
 
 # Create your views here.
 def home(request):
-    all_items = MovieList.objects.all
-    all_actors = ActorList.objects.all
-    roles = Roles.objects.all
+    all_items = MovieList.objects.all()
+    all_actors = ActorList.objects.all()
+    roles = Roles.objects.all()
     return render(request, 'index.html', {'all_items' : all_items, 'all_actors': all_actors, 'roles': roles})
 
 def add_movie(request):
+    form = MovieListForm()
     if request.method == 'POST':
         form = MovieListForm(request.POST or None)
         if form.is_valid():
@@ -20,7 +21,7 @@ def add_movie(request):
 
     else:
         all_actors = ActorList.objects.all
-        return render(request, 'add_movie.html', { 'all_actors': all_actors })
+        return render(request, 'add_movie.html', { 'all_actors': all_actors, 'form':form })
 
 def delete_movie(request, movie_id):
     movie = MovieList.objects.get(pk= movie_id)

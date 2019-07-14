@@ -28,8 +28,14 @@
         <div class="row text-center">
             <div class="col-sm-2"></div>
             <div class="col-sm-1"><p><b>CAST:</b></p></div>
-            <div class="col-sm-6"><p class="justify">
-            </p>Cast appear </div>
+
+            <div class="col-sm-6">
+              <p class="justify">
+                {% for actor in movie.actor.all %}
+                  {{ actor.name }},
+                {% endfor %}
+              </p>
+            </div>
         </div>
 
         <div class="row">
