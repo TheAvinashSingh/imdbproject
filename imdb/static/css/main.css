@@ -2,15 +2,40 @@
     margin-top: 3vw;
 }
 
-.nametitle {
-  text-transform: uppercase;
+.title {
+  text-transform: capitalize !important;
 }
 .justify {
     text-align: justify;
 }
 
 #id_actor, #actorselect {
-  width: 10vw;
-  border: 5px solid red;
-  min-width: 100px !important;
+  width: 100%;
+  color: white;
+  font-size: 1.2em;
+  height: 10vw;
+  text-align: center;
+  background-color: grey;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.uploadbtn {
+  border: none;
+  color: white;
+  background-color: #0087f1;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

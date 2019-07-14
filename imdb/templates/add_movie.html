@@ -21,7 +21,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movieyear">Release Year</label>
-                <input class="form-control" type="number" placeholder="2018" name="year" id="movieyear" min=1950 max=2019>
+                <input class="form-control" type="number" placeholder="2018" name="year" id="movieyear">
             </div>
         </div>
         <div class="form-group form-row">
@@ -40,10 +40,17 @@
                 <div>{{ form.actor|safe }}</div>
             </div>
         </div>
-        <div class="makegap"></div>
-        {{ form.poster }}
-        <div class="makegap"></div>
+        <div class="form-group form-row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="upload-btn-wrapper">
+              <button class="uploadbtn">Upload Poster</button>
+            {{ form.poster }}
+            </div>
+          </div>
+        </div>
         <div class="row">
+            <div class="col-sm-2"></div>
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-primary">Add Movie</button>
                 <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>

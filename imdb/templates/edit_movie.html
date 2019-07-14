@@ -36,23 +36,21 @@
 
             <div class="form-group form-row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                <label for="actorselect">Select Movie Cast</label>
+                <div class="col-sm-8">
+                <label for="id_actor">Select Movie Cast</label>
                 <small id="actortip" class="form-text text-muted">You can select Multiple Cast by Holding Ctrl/Cmd</small>
                     <div>{{ form.actor|safe }}</div>
                 </div>
-                <div class="col-sm-4">
-                  <u><b>Actors Already Present</b></u>
-                  <ul>
-                  {% for artist in movie.roles_set.all %}
-                    <li>{{artist.actor.name}}</li>
-                  {% endfor %}
-                  </ul>
-                </div>
             </div>
-            <div class="makegap"></div>
-            {{ form.poster }}
-            <div class="makegap"></div>
+            <div class="form-group form-row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <div class="upload-btn-wrapper">
+                  <button class="uploadbtn">Upload Poster</button>
+                {{ form.poster }}
+                </div>
+              </div>
+            </div>
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-4">

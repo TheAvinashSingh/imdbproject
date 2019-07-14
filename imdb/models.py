@@ -4,8 +4,19 @@ from django.contrib import admin
 class ActorList(models.Model):
     name = models.CharField(max_length=50)
     gender = models.CharField(max_length=6, choices=(('Male', 'Male'), ('Female', 'Female'), ('Others', 'Others')))
-    bio = models.TextField()
+    bio = models.TextField(blank=False)
     birthdate = models.DateField()
+
+    def clean(self, *args, **kwargs):
+        namelen = len(self.name)
+        if namelen < 5:
+            raise ValidationError(u'Name is Short')
+        else:
+            super(ActorList, self).clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(ActorList, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('name',)
@@ -16,7 +27,7 @@ class ActorList(models.Model):
 
 class MovieList(models.Model):
     title = models.CharField(max_length=100)
-    year = models.CharField(max_length=4)
+    year = models.PositiveSmallIntegerField()
     plot = models.TextField()
     actor = models.ManyToManyField(ActorList, related_name='Actor', through='Roles', verbose_name='ACTOR/ACTRESS')
     poster = models.ImageField(upload_to='movie_poster', blank= True)
