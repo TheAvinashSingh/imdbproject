@@ -27,8 +27,13 @@ def add_movie(request):
             year = int(request.POST['year'])
             plot = request.POST['plot']
             words = title.split(' ')
-            for word in words:
-                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
+            if len(words)  > 1:
+                for word in words:
+                    if (re.search('^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$', word) == None):
+                        titleerror = 'Title can only contain Alphanumerics and Hyphen'
+                        return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form, 'title': title, 'year': year, 'plot': plot})
+            else:
+                if (re.search('^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$', title) == None):
                     titleerror = 'Title can only contain Alphanumerics and Hyphen'
                     return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form, 'title': title, 'year': year, 'plot': plot})
             if year > 2050:
@@ -61,8 +66,13 @@ def edit_movie(request, movie_id):
             title = request.POST['title']
             year = int(request.POST['year'])
             words = title.split(' ')
-            for word in words:
-                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
+            if len(words) > 1:
+                for word in words:
+                    if (re.search('^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$', word) == None):
+                        titleerror = 'Title can only contain Alphanumerics and Hyphen'
+                        return render(request, 'edit_movie.html', {'movie': movie, 'titleerror': titleerror, 'form': form})
+            else:
+                if ( re.search('^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$', title) == None):
                     titleerror = 'Title can only contain Alphanumerics and Hyphen'
                     return render(request, 'edit_movie.html', {'movie': movie, 'titleerror': titleerror, 'form': form})
             if year > 2050:
@@ -100,9 +110,14 @@ def add_actor(request):
             bio = request.POST['bio']
             name = request.POST['name']
             words = name.split(' ')
-            for word in words:
-                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
-                    nameerror = 'Name can only contain Alphanumerics and Hyphen'
+            if len(words) > 1:
+                for word in words:
+                    if (re.search('^[a-zA-Z]+$', word) == None):
+                        nameerror = 'Name can only contain Alphabets'
+                        return render(request, 'add_actor.html', {'nameerror': nameerror, 'form': form, 'name': name, 'dob': dob, 'bio': bio})
+            else:
+                if (re.search('^[a-zA-Z]+$', name) == None ):
+                    nameerror = 'Name can only contain Alphabets'
                     return render(request, 'add_actor.html', {'nameerror': nameerror, 'form': form, 'name': name, 'dob': dob, 'bio': bio})
             if dobfull > today:
                 doberror = 'Date of Birth can not be in future'
