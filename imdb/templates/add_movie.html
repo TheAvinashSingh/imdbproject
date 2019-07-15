@@ -14,7 +14,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movietitle">Title of the Movie</label>
-                <input required class="form-control" type="text" placeholder="Write the movie name...." name="title" id="movietitle">
+                <input required class="form-control" type="text" placeholder="Write the movie name...." name="title" id="movietitle" value="{{title}}">
                 <small class="errorclass">{{titleerror}}</small>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movieyear">Release Year</label>
-                <input required class="form-control" type="number" placeholder="2018" name="year" id="movieyear">
+                <input required class="form-control" type="number" placeholder="2018" name="year" id="movieyear" value="{{year}}">
                 <small class="errorclass">{{yearerror}}</small>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movieplot">Plot</label>
-                <textarea required class="form-control" name="plot" id="movieplot" rows=4 placeholder=" Big Plot Here..."></textarea>
+                <textarea required class="form-control" name="plot" id="movieplot" rows=4 placeholder=" Big Plot Here..." >{{plot}}</textarea>
             </div>
         </div>
 

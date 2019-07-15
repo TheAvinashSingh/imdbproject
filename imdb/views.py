@@ -22,19 +22,21 @@ def add_movie(request):
     form = MovieListForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
+            #Validations
             title = request.POST['title']
             year = int(request.POST['year'])
+            plot = request.POST['plot']
             words = title.split(' ')
             for word in words:
                 if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
                     titleerror = 'Title can only contain Alphanumerics and Hyphen'
-                    return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form})
+                    return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form, 'title': title, 'year': year, 'plot': plot})
             if year > 2050:
                 yearerror = 'This is too far, You can not add movie after 2050'
-                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form})
+                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form, 'title': title, 'year': year, 'plot': plot})
             elif year < 1888:
                 yearerror = 'No Movie was made before 1888'
-                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form})
+                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form, 'title': title, 'year': year, 'plot': plot})
             else:
                 form.save()
                 all_items = MovieList.objects.all()
@@ -55,6 +57,7 @@ def edit_movie(request, movie_id):
     form = MovieListForm(request.POST or None, request.FILES or None, instance=movie)
     if request.method == 'POST':
         if form.is_valid():
+            #Validations
             title = request.POST['title']
             year = int(request.POST['year'])
             words = title.split(' ')
@@ -99,11 +102,11 @@ def add_actor(request):
             words = name.split(' ')
             for word in words:
                 if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
-                    titleerror = 'Name can only contain Alphanumerics and Hyphen'
-                    return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form})
+                    nameerror = 'Name can only contain Alphanumerics and Hyphen'
+                    return render(request, 'add_actor.html', {'nameerror': nameerror, 'form': form, 'name': name, 'dob': dob, 'bio': bio})
             if dobfull > today:
                 doberror = 'Date of Birth can not be in future'
-                return render(request, 'add_actor.html', {'doberror': doberror, 'form': form})
+                return render(request, 'add_actor.html', {'doberror': doberror, 'form': form, 'name': name, 'dob': dob, 'bio': bio})
             else:
                 form.save()
                 all_actors = ActorList.objects.all

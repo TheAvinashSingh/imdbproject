@@ -11,7 +11,7 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="name">Actor Name</label>
-            <input type="text" id="name" class="form-control" name="name" required>
+            <input type="text" id="name" class="form-control" name="name" value="{{name}}" placeholder="Tom Cruise" required>
             <small class="errorclass">{{nameerror}}</small>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="birthdate">Date of Birth</label>
-            <input class="form-control" name="birthdate" id="birthdate" type="date" value='1984-01-01' required>
+            <input class="form-control" name="birthdate" id="birthdate" type="date" value="{{dob}}" required>
             <small class="errorclass">{{doberror}}</small>
         </div>
     </div>
@@ -42,7 +42,7 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="bio">Bio</label>
-            <textarea required name="bio" id="bio" rows=4 class="form-control" placeholder="Write a short Bio Here....."></textarea>
+            <textarea required name="bio" id="bio" rows=4 class="form-control" placeholder="Write a short Bio Here....." value="bio"></textarea>
         </div>
     </div>
     <div class="form-group form-row">
