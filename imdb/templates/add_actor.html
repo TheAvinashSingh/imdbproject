@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form class="form" method="POST">
+<form class="form needs-validation" method="POST">
 {% csrf_token %}
 <div class="makegap"></div>
 <div class="container">
@@ -11,7 +11,8 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="name">Actor Name</label>
-            <input type="text" id="name" class="form-control" name="name" placeholder="Tom Cruise">
+            <input type="text" id="name" class="form-control" name="name" required>
+            <small class="errorclass">{{nameerror}}</small>
         </div>
     </div>
     <div class="form-inline form-group form-check text-center form-row">
@@ -33,14 +34,15 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="birthdate">Date of Birth</label>
-            <input class="form-control" name="birthdate" id="birthdate" type="date" max='2019-07-15' value='1984-01-01'>
+            <input class="form-control" name="birthdate" id="birthdate" type="date" value='1984-01-01' required>
+            <small class="errorclass">{{doberror}}</small>
         </div>
     </div>
     <div class="form-group form-row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <label for="bio">Bio</label>
-            <textarea name="bio" id="bio" rows=4 class="form-control" placeholder="Write a short Bio Here....."></textarea>
+            <textarea required name="bio" id="bio" rows=4 class="form-control" placeholder="Write a short Bio Here....."></textarea>
         </div>
     </div>
     <div class="form-group form-row">

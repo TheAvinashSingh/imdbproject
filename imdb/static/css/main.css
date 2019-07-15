@@ -39,3 +39,6 @@
   top: 0;
   opacity: 0;
 }
+.errorclass {
+  color: red;
+}

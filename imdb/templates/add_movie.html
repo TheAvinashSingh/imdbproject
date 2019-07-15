@@ -14,21 +14,23 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movietitle">Title of the Movie</label>
-                <input class="form-control" type="text" placeholder="Write the movie name...." name="title" id="movietitle">
+                <input required class="form-control" type="text" placeholder="Write the movie name...." name="title" id="movietitle">
+                <small class="errorclass">{{titleerror}}</small>
             </div>
         </div>
         <div class="form-group form-row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movieyear">Release Year</label>
-                <input class="form-control" type="number" placeholder="2018" name="year" id="movieyear">
+                <input required class="form-control" type="number" placeholder="2018" name="year" id="movieyear">
+                <small class="errorclass">{{yearerror}}</small>
             </div>
         </div>
         <div class="form-group form-row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label for="movieplot">Plot</label>
-                <textarea class="form-control" name="plot" id="movieplot" rows=4 placeholder=" Big Plot Here..."></textarea>
+                <textarea required class="form-control" name="plot" id="movieplot" rows=4 placeholder=" Big Plot Here..."></textarea>
             </div>
         </div>
 
@@ -37,12 +39,13 @@
             <div class="col-sm-8">
             <label for="id_actor">Select Movie Cast</label>
             <small id="actortip" class="form-text text-muted">You can select Multiple Cast by Holding Ctrl/Cmd</small>
-                <div>{{ form.actor|safe }}</div>
+                <div aria_describedby="actortip">{{ form.actor|safe }}</div>
             </div>
         </div>
         <div class="form-group form-row">
           <div class="col-sm-2"></div>
           <div class="col-sm-8">
+            <small class="form-text text-muted">You can only upload an image file.</small>
             <div class="upload-btn-wrapper">
               <button class="uploadbtn">Upload Poster</button>
             {{ form.poster }}

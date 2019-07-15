@@ -1,7 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import MovieList, ActorList
 from .forms import MovieListForm, ActorListForm
-from django.core.exceptions import ValidationError
+import re
+import datetime
+import time
+
+
+
+# Date Time
+today = time.strftime(r"%m/%d/%Y %H:%M:%S", time.localtime())
+today = datetime.datetime.strptime(today, '%m/%d/%Y %H:%M:%S')
+
 
 # Create your views here.
 def home(request):
@@ -13,13 +22,27 @@ def add_movie(request):
     form = MovieListForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-            all_items = MovieList.objects.all
-            all_actors = ActorList.objects.all
-            return render(request, 'index.html', {'all_items': all_items, 'all_actors': all_actors})
+            title = request.POST['title']
+            year = int(request.POST['year'])
+            words = title.split(' ')
+            for word in words:
+                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
+                    titleerror = 'Title can only contain Alphanumerics and Hyphen'
+                    return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form})
+            if year > 2050:
+                yearerror = 'This is too far, You can not add movie after 2050'
+                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form})
+            elif year < 1888:
+                yearerror = 'No Movie was made before 1888'
+                return render(request, 'add_movie.html', {'yearerror': yearerror, 'form': form})
+            else:
+                form.save()
+                all_items = MovieList.objects.all()
+                all_actors = ActorList.objects.all()
+                return render(request, 'index.html', {'all_items': all_items, 'all_actors': all_actors})
 
     else:
-        all_actors = ActorList.objects.all
+        all_actors = ActorList.objects.all()
         return render(request, 'add_movie.html', { 'all_actors': all_actors, 'form':form })
 
 def delete_movie(request, movie_id):
@@ -32,10 +55,24 @@ def edit_movie(request, movie_id):
     form = MovieListForm(request.POST or None, request.FILES or None, instance=movie)
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-            all_items = MovieList.objects.all
-            all_actors = ActorList.objects.all
-            return render(request, 'index.html', {'all_items': all_items, 'all_actors': all_actors})
+            title = request.POST['title']
+            year = int(request.POST['year'])
+            words = title.split(' ')
+            for word in words:
+                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
+                    titleerror = 'Title can only contain Alphanumerics and Hyphen'
+                    return render(request, 'edit_movie.html', {'movie': movie, 'titleerror': titleerror, 'form': form})
+            if year > 2050:
+                yearerror = 'This is too far, You can not add movie after 2050'
+                return render(request, 'edit_movie.html', {'movie': movie,'yearerror': yearerror, 'form': form})
+            elif year < 1888:
+                yearerror = 'No Movie was made before 1888'
+                return render(request, 'edit_movie.html', {'movie': movie, 'yearerror': yearerror, 'form': form})
+            else:
+                form.save()
+                all_items = MovieList.objects.all
+                all_actors = ActorList.objects.all
+                return render(request, 'index.html', {'all_items': all_items, 'all_actors': all_actors})
     else:
         return render(request, 'edit_movie.html', {'movie': movie, 'form': form})
 
@@ -52,11 +89,25 @@ def delete_actor(request, actor_id):
 def add_actor(request):
     if request.method == 'POST':
         form = ActorListForm(request.POST or None)
-
         if form.is_valid():
-            form.save()
-            all_actors = ActorList.objects.all
-            return render(request, 'actors.html', {'all_actors': all_actors})
+            # Validation
+            dob = request.POST['birthdate']
+            dobfull = (dob + ' 00:00:00')
+            dobfull = datetime.datetime.strptime(dobfull, '%Y-%m-%d %H:%M:%S')
+            bio = request.POST['bio']
+            name = request.POST['name']
+            words = name.split(' ')
+            for word in words:
+                if (re.search('^[a-z0-9]+(?:-[a-z0-9]+)*$', word) == None):
+                    titleerror = 'Name can only contain Alphanumerics and Hyphen'
+                    return render(request, 'add_movie.html', {'titleerror': titleerror, 'form': form})
+            if dobfull > today:
+                doberror = 'Date of Birth can not be in future'
+                return render(request, 'add_actor.html', {'doberror': doberror, 'form': form})
+            else:
+                form.save()
+                all_actors = ActorList.objects.all
+                return render(request, 'actors.html', {'all_actors': all_actors})
 
     else:
         return render(request, 'add_actor.html', {})

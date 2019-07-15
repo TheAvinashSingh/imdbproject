@@ -6,24 +6,12 @@ class ActorList(models.Model):
     gender = models.CharField(max_length=6, choices=(('Male', 'Male'), ('Female', 'Female'), ('Others', 'Others')))
     bio = models.TextField(blank=False)
     birthdate = models.DateField()
-
-    def clean(self, *args, **kwargs):
-        namelen = len(self.name)
-        if namelen < 5:
-            raise ValidationError(u'Name is Short')
-        else:
-            super(ActorList, self).clean(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(ActorList, self).save(*args, **kwargs)
-
+    
     class Meta:
         ordering = ('name',)
 
     def __str__(self):
         return (self.name)
-
 
 class MovieList(models.Model):
     title = models.CharField(max_length=100)
